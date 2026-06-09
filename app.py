@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import pandas as pd
 import joblib
 import os
-
+from src.pcap_analyzer import analyze_pcap
 app = Flask(__name__)
 
 UPLOAD_FOLDER = "uploads"
@@ -81,6 +81,23 @@ def predict():
     except Exception as e:
         return f"Error: {str(e)}"
 
+@app.route("/analyze", methods=["POST"])
+def analyze():
 
+    file = request.files["pcapfile"]
+
+    filepath = os.path.join(
+        "uploads",
+        file.filename
+    )
+
+    file.save(filepath)
+
+    result = analyze_pcap(filepath)
+
+    return render_template(
+        "results.html",
+        result=result
+    )
 if __name__ == "__main__":
     app.run(debug=True)
