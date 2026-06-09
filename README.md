@@ -1,87 +1,141 @@
 # CyberShield IDS
 
-Machine Learning Based Intrusion Detection System using Random Forest.
+A Machine Learning and PCAP-Based Intrusion Detection System (IDS) designed to analyze network traffic and detect potential security threats using Random Forest Classification and Packet Analysis.
 
 ## Features
 
-- Network Intrusion Detection
-- Machine Learning Based Detection
-- Random Forest Classifier
-- Confusion Matrix Generation
-- Accuracy, Precision, Recall, F1 Score
-- Model Persistence using Joblib
+* Machine Learning Based Intrusion Detection
+* Random Forest Classifier
+* NSL-KDD Dataset Support
+* Accuracy, Precision, Recall, and F1 Score Evaluation
+* Confusion Matrix Generation
+* Model Persistence using Joblib
+* Flask Web Dashboard
+* PCAP File Upload and Analysis
+* TCP, UDP, and ICMP Packet Statistics
+* Risk Assessment Module
+* Cybersecurity Dashboard Interface
 
-## Technologies
+## Technologies Used
 
-- Python
-- Scikit-Learn
-- Pandas
-- Matplotlib
-- Joblib
+* Python
+* Flask
+* Scikit-Learn
+* Pandas
+* Matplotlib
+* Scapy
+* Bootstrap 5
+* Joblib
 
 ## Results
 
-Accuracy: 99.86%
+* Model Accuracy: 99.86%
+* Confusion Matrix Generated Successfully
+* Real-Time PCAP Analysis Support
 
 ## Project Structure
 
-dataset/
-models/
-screenshots/
-src/
+```text
+CyberShield-IDS
+│
+├── dataset/
+├── models/
+├── results/
+├── screenshots/
+├── src/
+│   ├── preprocess.py
+│   ├── train_model.py
+│   ├── detect.py
+│   └── pcap_analyzer.py
+│
+├── static/
+├── templates/
+│   ├── index.html
+│   └── results.html
+│
+├── app.py
+├── main.py
+├── README.md
+└── .gitignore
+```
+
+## Flask Dashboard Features
+
+* Upload PCAP Files
+* Analyze Network Traffic
+* Display Packet Statistics
+* Generate Risk Assessment
+* View Results Through Web Interface
+
+## PCAP Analysis Features
+
+The system analyzes uploaded PCAP files and extracts:
+
+* Total Packets
+* TCP Packet Count
+* UDP Packet Count
+* ICMP Packet Count
+* Risk Level Assessment
+
+### Risk Levels
+
+* HIGH → Possible UDP Flood Attack
+* MEDIUM → Heavy TCP Traffic Detected
+* LOW → Traffic Appears Normal
+
+## Network Traffic Features Used
+
+The machine learning model uses 41 network traffic features from the NSL-KDD dataset to classify traffic as Normal or Attack.
+
+Examples include:
+
+* duration
+* protocol_type
+* service
+* flag
+* src_bytes
+* dst_bytes
+* logged_in
+* count
+* srv_count
+* dst_host_count
+* dst_host_srv_count
+* dst_host_rerror_rate
+
+(Complete list available in project documentation.)
+
+## How to Run
+
+### Train Model
+
+```bash
+python src/train_model.py
+```
+
+### Launch Dashboard
+
+```bash
+python app.py
+```
+
+Open:
+
+```text
+http://127.0.0.1:5000
+```
+
+### Upload PCAP File
+
+1. Open the dashboard.
+2. Upload a `.pcap` file captured using Wireshark.
+3. View packet statistics and risk assessment.
 
 ## Future Enhancements
 
-- Flask Dashboard
-- Real-Time Monitoring
-- Wireshark Integration
-- Attack Classification
-## Network Traffic Features Used
-
-The Intrusion Detection System (IDS) uses 41 network traffic features from the NSL-KDD dataset to classify traffic as either **Normal** or **Attack**.
-
-| No. | Feature Name                |
-| --- | --------------------------- |
-| 1   | duration                    |
-| 2   | protocol_type               |
-| 3   | service                     |
-| 4   | flag                        |
-| 5   | src_bytes                   |
-| 6   | dst_bytes                   |
-| 7   | land                        |
-| 8   | wrong_fragment              |
-| 9   | urgent                      |
-| 10  | hot                         |
-| 11  | num_failed_logins           |
-| 12  | logged_in                   |
-| 13  | num_compromised             |
-| 14  | root_shell                  |
-| 15  | su_attempted                |
-| 16  | num_root                    |
-| 17  | num_file_creations          |
-| 18  | num_shells                  |
-| 19  | num_access_files            |
-| 20  | num_outbound_cmds           |
-| 21  | is_host_login               |
-| 22  | is_guest_login              |
-| 23  | count                       |
-| 24  | srv_count                   |
-| 25  | serror_rate                 |
-| 26  | srv_serror_rate             |
-| 27  | rerror_rate                 |
-| 28  | srv_rerror_rate             |
-| 29  | same_srv_rate               |
-| 30  | diff_srv_rate               |
-| 31  | srv_diff_host_rate          |
-| 32  | dst_host_count              |
-| 33  | dst_host_srv_count          |
-| 34  | dst_host_same_srv_rate      |
-| 35  | dst_host_diff_srv_rate      |
-| 36  | dst_host_same_src_port_rate |
-| 37  | dst_host_srv_diff_host_rate |
-| 38  | dst_host_serror_rate        |
-| 39  | dst_host_srv_serror_rate    |
-| 40  | dst_host_rerror_rate        |
-| 41  | dst_host_srv_rerror_rate    |
-
-These features describe different characteristics of network traffic, such as connection duration, protocol type, bytes transferred, login attempts, error rates, and host-based statistics. The Random Forest classifier uses these features to detect malicious activities and network intrusions.
+* Real-Time Packet Monitoring
+* Machine Learning-Based PCAP Classification
+* Live Attack Alerts
+* Network Visualization Dashboard
+* Attack Type Classification
+* Downloadable Security Reports
+* Email Alert System
